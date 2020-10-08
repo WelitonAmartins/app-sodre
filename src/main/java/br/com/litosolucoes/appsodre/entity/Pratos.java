@@ -12,16 +12,16 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity(name = "BEBIDA")
+@Entity(name = "PRATOS")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Bebida implements Serializable {
+public class Pratos implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "COD_BEBIDA")
+	@Column(name = "CODIGO")
 	private Long codigo;
 
 	@Column(name = "NOME")
@@ -29,5 +29,4 @@ public class Bebida implements Serializable {
 
 	@Column(name = "VALOR")
 	private Double valor;
-
 }

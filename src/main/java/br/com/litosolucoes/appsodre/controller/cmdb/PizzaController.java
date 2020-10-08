@@ -12,36 +12,35 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.litosolucoes.appsodre.entity.Bebida;
-import br.com.litosolucoes.appsodre.service.BebidaService;
+import br.com.litosolucoes.appsodre.entity.Pizza;
+import br.com.litosolucoes.appsodre.service.PizzaService;
 
 @RestController
-@RequestMapping(value = "v1/bebida")
-public class BebidaController {
+@RequestMapping(value = "v1/pizza")
+public class PizzaController {
 
 	@Autowired
-	private BebidaService bebidaService;
+	private PizzaService pizzaService;
 
 	@GetMapping
-	public ResponseEntity<List<Bebida>> listarBedidas() {
-		return ResponseEntity.ok(this.bebidaService.listarBebidas());
+	public ResponseEntity<List<Pizza>> listarBedidas() {
+		return ResponseEntity.ok(this.pizzaService.listarPizzas());
 	}
 
 	@GetMapping(path = "{codigo}")
-	public ResponseEntity<Bebida> buscarPeloId(@PathVariable Long codigo) {
-		return ResponseEntity.ok(this.bebidaService.buscarBebidaId(codigo));
+	public ResponseEntity<Pizza> buscarPeloId(@PathVariable Long codigo) {
+		return ResponseEntity.ok(this.pizzaService.buscarPizzaId(codigo));
 	}
 
 	@PostMapping
-	public ResponseEntity<Bebida> cadastrarBebida(@RequestBody Bebida bebida) {
-		return ResponseEntity.ok(this.bebidaService.cadastrarBebida(bebida));
+	public ResponseEntity<Pizza> cadastrarBebida(@RequestBody Pizza bebida) {
+		return ResponseEntity.ok(this.pizzaService.cadastrarPizza(bebida));
 	}
 
 	@DeleteMapping(path = "{codigo}")
 	public ResponseEntity<Void> deletarBebida(@PathVariable Long codigo) {
-		this.bebidaService.deletarBebida(codigo);
+		this.pizzaService.deletarPizza(codigo);
 		return ResponseEntity.noContent().build();
 
 	}
-
 }
