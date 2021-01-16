@@ -2,28 +2,27 @@ package br.com.litosolucoes.appsodre.entity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity(name = "PEDIDO_PIZZA_DELIVERY")
+@Entity(name = "PEDIDO")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PizzaDelivery implements Serializable {
+public class Pedido implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -31,23 +30,16 @@ public class PizzaDelivery implements Serializable {
 	@Column(name = "COD_PEDIDO")
 	private Long codigo;
 
-	@Column(name = "BAIRRO")
-	private String bairro;
-
-	@Column(name = "ENDERECO")
-	private String endereco;
-
-	@Column(name = "NUMERO")
-	private String numero;
-
-	@Column(name = "COMPLEMENTO")
-	private String complemento;
-
 	@Column(name = "DT_PEDIDO")
 	private LocalDateTime dtPedido;
 
-	@JsonManagedReference
-	@OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<PedidoPizzaDelivery> pedidoPizzaDelivery = new ArrayList<>();
+	@OneToOne
+	@JoinColumn(name = "COD_USUARIO", referencedColumnName = "COD_USUARIO")
+	private Usuario usuario;
+
+	@ManyToMany
+	@JoinTable(name = "ITEM_PEDIDO", joinColumns = { @JoinColumn(name = "COD_PEDIDO") }, inverseJoinColumns = {
+			@JoinColumn(name = "COD_PRODUTO") })
+	private List<Produto> produto;
 
 }

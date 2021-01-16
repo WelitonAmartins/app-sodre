@@ -12,22 +12,19 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity(name = "PIZZA")
+@Entity(name = "CATEGORIA")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Pizza implements Serializable {
+public class Categoria implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "COD_PIZZA")
+	@Column(name = "COD_CATEGORIA")
 	private Long codigo;
-
+	
 	@Column(name = "NOME")
 	private String nome;
-
-	@Column(name = "VALOR")
-	private Double valor;
 
 }

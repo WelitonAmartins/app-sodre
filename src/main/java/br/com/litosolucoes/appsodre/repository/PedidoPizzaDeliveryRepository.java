@@ -3,9 +3,9 @@ package br.com.litosolucoes.appsodre.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import br.com.litosolucoes.appsodre.entity.PizzaDelivery;
+import br.com.litosolucoes.appsodre.entity.Pedido;
 
 @Repository
-public interface PedidoPizzaDeliveryRepository extends JpaRepository<PizzaDelivery, Long> {
+public interface PedidoPizzaDeliveryRepository extends JpaRepository<Pedido, Long> {
 
 }
