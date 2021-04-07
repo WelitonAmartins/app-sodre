@@ -34,7 +34,7 @@ public class RelatorioService {
 	public static Connection getConnectionX() throws SQLException{
 		try {
 		Class.forName("org.postgresql.Driver"); 
-		return DriverManager.getConnection("jdbc:postgresql://ec2-3-86-247-166.compute-1.amazonaws.com:5432/postgres","postgres","unisenha");
+		return DriverManager.getConnection("jdbc:postgresql://18.212.14.212:5432/postgres","postgres","unisenha");
 //		return DriverManager.getConnection("jdbc:postgresql://192.168.37.136/postgres","postgres","unisenha"); 
 		}catch (ClassNotFoundException e) {
 		JOptionPane.showMessageDialog(null, e.getMessage());
