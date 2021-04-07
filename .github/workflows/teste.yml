@@ -28,7 +28,7 @@ jobs:
           echo "---------| buildando app | -----------"
           mvn clean package
           echo "---------| gerando build | -----------"
-          docker build -t=uniliva/app-sodre:latest .
+          docker build -t=martinsweliton/app-sodre:latest .
           echo "---------| enviando docker hub | -----------"
-          docker push uniliva/app-sodre:latest
+          docker push martinsweliton/app-sodre:latest
           echo "---------| Sucessão | -----------"
