@@ -12,11 +12,11 @@ public class AppSodreApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(AppSodreApplication.class, args);
 		System.setProperty("java.awt.headless", "false");
-		SwingUtilities.invokeLater(() -> {
-		    JFrame f = new JFrame("myframe");
-		    f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		   // f.setVisible(true);
-		});
+//		SwingUtilities.invokeLater(() -> {
+//		    JFrame f = new JFrame("myframe");
+//		    f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		   // f.setVisible(true);
+//		});
 	}
 
 }

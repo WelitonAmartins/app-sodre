@@ -20,9 +20,9 @@ public class Endereco implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy= GenerationType.AUTO)
 	@Column(name = "COD_ENDERECO")
-	private Long codigo;
+	private Integer codigo;
 
 	@Column(name = "ENDERECO")
 	private String endereco;

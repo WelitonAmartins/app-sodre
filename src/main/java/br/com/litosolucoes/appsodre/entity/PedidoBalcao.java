@@ -25,22 +25,22 @@ public class PedidoBalcao implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy= GenerationType.AUTO)
 	@Column(name = "COD_PEDIDO_BALCAO")
-	private Long codigo;
+	private Integer codigo;
 
 	@Column(name = "DT_PEDIDO")
 	private LocalDateTime dtPedido;
 
 	@Column(name = "NOME")
 	private String nome;
-//	@OneToOne
-//	@JoinColumn(name = "COD_USUARIO", referencedColumnName = "COD_USUARIO")
-//	private Usuario usuario;
+	
+	@Column(name = "FL_MESA")
+	private Integer flMesa;
 
 	@ManyToMany
-	@JoinTable(name = "ITEM_PEDIDO", joinColumns = { @JoinColumn(name = "COD_PEDIDO") }, inverseJoinColumns = {
+	@JoinTable(name = "ITEM_PEDIDO_BALCAO", joinColumns = { @JoinColumn(name = "COD_PEDIDO_BALCAO") }, inverseJoinColumns = {
 			@JoinColumn(name = "COD_PRODUTO") })
-	private List<Produto> produto;
+	private List<Produto> listaProdutos;
 
 }

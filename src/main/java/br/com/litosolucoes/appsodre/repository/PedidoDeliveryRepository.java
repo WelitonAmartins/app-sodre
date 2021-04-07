@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import br.com.litosolucoes.appsodre.entity.PedidoDelivery;
 
 @Repository
-public interface PedidoPizzaDeliveryRepository extends JpaRepository<PedidoDelivery, Long> {
+public interface PedidoDeliveryRepository extends JpaRepository<PedidoDelivery, Integer>{
 
 }

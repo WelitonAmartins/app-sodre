@@ -18,28 +18,31 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity(name = "PEDIDO")
+@Entity(name = "PEDIDO_DELIVERY")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Pedido implements Serializable {
+public class PedidoDelivery implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "COD_PEDIDO")
-	private Long codigo;
+	@GeneratedValue(strategy= GenerationType.AUTO)
+	@Column(name = "COD_PEDIDO_DELIVERY")
+	private Integer codigo;
 
 	@Column(name = "DT_PEDIDO")
 	private LocalDateTime dtPedido;
+	
+	@Column(name = "NOME")
+	private String nome;
 
 	@OneToOne
-	@JoinColumn(name = "COD_USUARIO", referencedColumnName = "COD_USUARIO")
-	private Usuario usuario;
-
+    @JoinColumn(name = "COD_ENDERECO", referencedColumnName = "COD_ENDERECO")
+	private Endereco endereco;
+	
 	@ManyToMany
-	@JoinTable(name = "ITEM_PEDIDO", joinColumns = { @JoinColumn(name = "COD_PEDIDO") }, inverseJoinColumns = {
+	@JoinTable(name = "ITEM_PEDIDO_DELIVERY", joinColumns = { @JoinColumn(name = "COD_PEDIDO_DELIVERY") }, inverseJoinColumns = {
 			@JoinColumn(name = "COD_PRODUTO") })
-	private List<Produto> produto;
+	private List<Produto> listaProdutos;
 
 }
