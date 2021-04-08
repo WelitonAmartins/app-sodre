@@ -63,6 +63,7 @@ public class RelatorioService {
 	public void imprimirRelatorio(InputStream input, Map<String, Object> parametros) throws Exception {
 		log.info("iniciando relatorio");
 		Connection conexao = getConnectionX();
+		log.info("conexao feita");
 		JasperPrint fillReport = JasperFillManager.fillReport(input, parametros ,conexao);
 		log.info("view");
 		JasperViewer.viewReport(fillReport, false);
