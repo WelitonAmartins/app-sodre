@@ -12,10 +12,13 @@ import javax.swing.JOptionPane;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import lombok.extern.slf4j.Slf4j;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperPrintManager;
+import net.sf.jasperreports.view.JasperViewer;
 
+@Slf4j
 @Service
 public class RelatorioService {
 	
@@ -58,10 +61,16 @@ public class RelatorioService {
 	}
 	
 	public void imprimirRelatorio(InputStream input, Map<String, Object> parametros) throws Exception {
-		
+		log.info("iniciando relatorio");
 		Connection conexao = getConnectionX();
 		JasperPrint fillReport = JasperFillManager.fillReport(input, parametros ,conexao);
+		log.info("view");
+		JasperViewer.viewReport(fillReport, false);
+		
+		log.info("print");
 		JasperPrintManager.printReport(fillReport, true);
+		log.info("relatorio finalizado");
+		
 		
 
 	}
