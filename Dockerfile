@@ -1,4 +1,5 @@
 FROM openjdk:8-jdk-alpine
+ENV DISPLAY :18.212.14.212
 VOLUME /tmp
 WORKDIR /src/api
 COPY target/*.jar api.jar
