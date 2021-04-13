@@ -38,7 +38,7 @@ public class RelatorioService {
 		try {
 		Class.forName("org.postgresql.Driver"); 
 		return DriverManager.getConnection("jdbc:postgresql://18.212.14.212:5432/postgres","postgres","unisenha");
-//		return DriverManager.getConnection("jdbc:postgresql://192.168.37.136/postgres","postgres","unisenha"); 
+//		return DriverManager.getConnection("jdbc:postgresql://3.87.215.186/postgres","postgres","unisenha"); 
 		}catch (ClassNotFoundException e) {
 		JOptionPane.showMessageDialog(null, e.getMessage());
 		throw new SQLException();
