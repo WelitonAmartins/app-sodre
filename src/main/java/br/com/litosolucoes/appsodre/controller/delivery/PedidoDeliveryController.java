@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.litosolucoes.appsodre.dto.PedidoDeliveryDTO;
+import br.com.litosolucoes.appsodre.dto.RetornoPedidoDeliveryDTO;
 import br.com.litosolucoes.appsodre.entity.PedidoBalcao;
 import br.com.litosolucoes.appsodre.entity.PedidoDelivery;
 import br.com.litosolucoes.appsodre.service.PedidoDeliveryService;
@@ -32,7 +33,7 @@ public class PedidoDeliveryController {
 	}
 
 	@PostMapping
-	public ResponseEntity<PedidoDelivery> salvarPedido(@RequestBody PedidoDeliveryDTO param) throws Exception {
+	public ResponseEntity<RetornoPedidoDeliveryDTO> salvarPedido(@RequestBody PedidoDeliveryDTO param) throws Exception {
 		return ResponseEntity.ok(this.pedidoDeliveryService.salvarPedidoDelivery(param));
 	}
 	

@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.litosolucoes.appsodre.dto.PedidoDeliveryDTO;
+import br.com.litosolucoes.appsodre.dto.ProdutoDTO;
+import br.com.litosolucoes.appsodre.dto.RetornoPedidoDeliveryDTO;
 import br.com.litosolucoes.appsodre.entity.Endereco;
 import br.com.litosolucoes.appsodre.entity.PedidoBalcao;
 import br.com.litosolucoes.appsodre.entity.PedidoDelivery;
@@ -39,7 +41,7 @@ public class PedidoDeliveryService {
 		return this.pedidoDeliveryRepository.findById(id);
 	}
 
-	public PedidoDelivery salvarPedidoDelivery(PedidoDeliveryDTO param) throws Exception {
+	public RetornoPedidoDeliveryDTO salvarPedidoDelivery(PedidoDeliveryDTO param) throws Exception {
 		List<Produto> listaProduto = new ArrayList<>();
 		for (Integer produto : param.getCodProduto()) {
 			Optional<Produto> idProduto = this.produtoService.bucarPorId(produto);
@@ -68,9 +70,32 @@ public class PedidoDeliveryService {
 		pd.setListaProdutos(listaProduto);
 		pd.setEndereco(idEndereco);
 
-		this.pedidoDeliveryRepository.save(pd);
-		this.relatorioService.carregarTemplateDelivery(pd.getCodigo());
-		return pd;
+		PedidoDelivery pedidoId = this.pedidoDeliveryRepository.save(pd);
+		
+		RetornoPedidoDeliveryDTO dto = new RetornoPedidoDeliveryDTO();
+		
+		dto.setNome(pedidoId.getNome());
+		dto.setObservacao("");
+		dto.setEndereco(pedidoId.getEndereco().getEndereco());
+		dto.setBairro(pedidoId.getEndereco().getBairro());
+		dto.setComplemento(pedidoId.getEndereco().getComplemento());
+		dto.setNumero(pedidoId.getEndereco().getNumero());
+		
+		List<ProdutoDTO> lista = new ArrayList<>();
+		for (Produto produto : pedidoId.getListaProdutos()) {
+			ProdutoDTO produtoDTO = new ProdutoDTO();
+			produtoDTO.setNome(produto.getNome());
+			produtoDTO.setValor(produto.getValor());
+			lista.add(produtoDTO);
+		}
+		dto.setProduto(lista);
+		double sum = pedidoId.getListaProdutos().stream().mapToDouble(p -> p.getValor()).sum();
+		dto.setTotal(sum);
+		
+		
+	//	this.relatorioService.carregarTemplateDelivery(pd.getCodigo());
+		
+		return dto;
 	}
 
 	public PedidoDelivery buscarRelatorioId(Integer codigo) throws Exception {

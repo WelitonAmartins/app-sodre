@@ -44,7 +44,7 @@ public class PedidoBalcaoService {
 		pb.setListaProdutos(listaProduto);
 		
 		this.pedidoBalcaoRepository.save(pb);
-		this.relatorioService.carregarTemplateBalcao(pb.getCodigo());
+		//this.relatorioService.carregarTemplateBalcao(pb.getCodigo());
 		
 		return pb;
 		
